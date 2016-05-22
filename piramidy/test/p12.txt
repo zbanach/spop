@@ -1,0 +1,1 @@
+Piramidy [Nothing, Nothing, Just 3, Just 4, Just 4, Just 3, Nothing, Just 3] [Nothing, Just 7, Just 6, Nothing, Just 3, Just 1, Just 5, Nothing] [Just 3, Nothing, Just 3, Nothing, Just 4, Just 6, Just 1, Just 2] [Nothing, Just 7, Just 6, Nothing, Nothing, Nothing, Just 5, Nothing]
