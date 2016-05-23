@@ -129,13 +129,10 @@ countVisiblePyramids lst =
             True -> 1 + countVisiblePyramids' xs x
             otherwise -> countVisiblePyramids' xs max
 
-nextCell sides board (row, col) =
-    if col == n - 1 && row == n - 1 then
-        Just board
-    else if col == n - 1 then
-        solve' sides board (row + 1, 0)
-    else
-        solve' sides board (row, col + 1)
+nextCell sides board (row, col)
+    | col == n - 1 && row == n - 1 = Just board
+    | col == n - 1                 = solve' sides board (row + 1, 0)
+    | otherwise                    = solve' sides board (row, col + 1)   
     where
         n = sizeOfBoard board
         
