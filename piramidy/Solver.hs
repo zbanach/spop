@@ -3,7 +3,7 @@ Module      : Solver
 Description : Algorytm rozwiązywania łamigłówki "Piramidy"
 Copyright   : Zbigniew Banach, Michał Breiter 2016
 
-Moduł udostęnia funkcję rozwiązującą łamigłówkę "Piramidy".
+Moduł implementujący algorytm rozwiązywania łamigłóœki "Piramidy".
 -}
 module Solver (solve, Solution(Solution,NoSolution)) where
 
@@ -17,14 +17,21 @@ import Pyramids
 -- | Typ reprezentujący rozwiązanie łamigłówki (lub jego brak).
 data Solution = NoSolution | Solution Board
 
+
 -- | Funkcja rozwiązująca łamigłówkę "Piramidy" dla podanego zestawu krawędzi planszy.
 -- Zwraca planszę spełniającą warunki łamigłówki lub NoSolution, jeżeli rozwiązanie nie istnieje.
 solve :: Edges -> Solution
 solve edges = solve' (emptyBoard edges) (0, 0)
 
+-- | Rekurencyjna funkcja realizująca algorytm z nawrotem dla kolejnych pól planszy.
 solve' :: Board -> Coordinates -> Solution
 solve' board (row, col) = tryPyramid (sizeOf board) board (row, col)
 
+-- | Próbuje umieścic piramidę na polu planszy o podanych współrzędnych.
+-- Jeżeli piramida może być umieszczona na polu, rekurencyjnie wywoływana jest funkcja solve' dla
+-- kolejnego pola planszy. W przeciwnym razie następuje wycofanie z aktualnej gałęzi i powrót
+-- do poprzedniego pola. Jeśli algorytm powrócił do pierwszego pola i wyczerpane zostały 
+-- wszystkie możliwe piramidy do wstawienia, to rozwiązanie nie istnieje.
 tryPyramid :: Int -> Board -> Coordinates -> Solution
 tryPyramid 0 _     _           = NoSolution
 tryPyramid i board coordinates = 
@@ -39,6 +46,8 @@ tryPyramid i board coordinates =
         isValid NoSolution = False
         isValid _          = True
         
+-- | Realizuje wywołanie funkcji solve' dla kolejnego pola planszy. Jeśli aktualne pole jest
+-- ostatnim, to zwracane jest znalezione rozwiązanie.
 nextCell board (row, col)
     | col == n - 1 && row == n - 1 = Solution board
     | col == n - 1                 = solve' board (row + 1, 0)

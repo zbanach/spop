@@ -25,6 +25,7 @@ import Main hiding (main)
 -- Nazwa pliku z rozwiązaniem wzorcowym musi mieć przyrostek "_solution".
 testFiles = ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "p10"]
 
+
 main = runTests testFiles 1
 
 runTests []     _ = putStrLn "Wszystkie testy zaliczone pomyślnie"

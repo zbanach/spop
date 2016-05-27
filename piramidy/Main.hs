@@ -37,8 +37,6 @@ readPyramidsFile fileName = do
     let pyramids = read content :: Piramidy
     return $ convert pyramids
 
-printSolution NoSolution       = putStrLn $ show NoSolution
-printSolution (Solution board) = do
-    putStrLn "\nZnalezione rozwiązanie:"
-    putStrLn $ show board
+printSolution NoSolution       = putStrLn "\nRozwiązanie nie istnieje\n"
+printSolution (Solution board) = putStrLn $ "\nZnalezione rozwiązanie:\n" ++ show board
 

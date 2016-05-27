@@ -27,6 +27,7 @@ data Board = Board Edges [[Int]]
 -- Pierwsza liczba pary określa numer wiersza, druga numer kolumny.
 type Coordinates = (Int, Int)
 
+
 -- | Zwraca pustą planszę z danym zestawem krawędzi.
 -- Note: Puste pole reprezentowane jest jako piramida o wysokości 0.
 emptyBoard :: Edges -> Board
